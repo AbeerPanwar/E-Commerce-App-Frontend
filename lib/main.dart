@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/cart.dart';
+import 'package:e_commerce_app/pages/about_page.dart';
 import 'package:e_commerce_app/pages/intro_page.dart';
 import 'package:e_commerce_app/pages/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           'homepage' : (context) => HomeScreen(),
+          'aboutpage' : (context) => AboutPage(),
         },
         home: IntroPage(),
       ),
