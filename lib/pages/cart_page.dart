@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/items/cart_tile.dart';
+import 'package:e_commerce_app/items/empty_cart.dart';
 import 'package:e_commerce_app/models/cart.dart';
 import 'package:e_commerce_app/models/shoe.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class CartPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+          value.getShoeCart().isEmpty? EmptyCart() : Expanded(
             child: ListView.builder(
               itemCount: value.getShoeCart().length ,
               itemBuilder:(context, index) {
