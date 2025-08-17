@@ -50,7 +50,54 @@ class _CartTileState extends State<CartTile> {
               color: Colors.grey.shade500,
             ),
           ),
-          trailing: IconButton(onPressed: () => deleteFromCart(), icon: Icon(Icons.delete)),
+          trailing: IconButton(
+            onPressed: () {
+              showDialog(
+                context: context, 
+                builder:(context) => AlertDialog(
+                  backgroundColor: Colors.grey.shade900,
+                  title: Text(
+                    'Delete',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
+                  content: Text(
+                    'Are you sure you want to remove this product?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context) , 
+                      child: Text(
+                        'No',
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        deleteFromCart(); 
+                        Navigator.pop(context);
+                      } , 
+                      child: Text(
+                        'Yes',
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: Icon(Icons.delete),),
         ),
       ),
     );
