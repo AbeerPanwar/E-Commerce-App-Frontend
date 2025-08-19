@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/items/shoe_tile.dart';
+import 'package:e_commerce_app/items/size_tile.dart';
 import 'package:e_commerce_app/models/cart.dart';
 import 'package:e_commerce_app/models/shoe.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,91 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+
+  void showSelectSheet(Shoe shoe,){
+    showModalBottomSheet(
+      context: context, 
+      builder: (BuildContext context) => Container(
+        decoration: BoxDecoration(  
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25),),
+          color: Colors.grey.shade900,
+        ),
+        height: 250,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Container(
+                  height: 2,
+                  width: 35,
+                  color: Colors.grey.shade500,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25, top: 20),
+              child: Text(
+                'Sizes',
+                style: TextStyle(
+                  color: Colors.grey.shade200,
+                  fontSize: 27,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15,),
+              child: SizeTile(shoe: shoe,),
+            ),
+            Divider(
+              height: 50,
+              color: Colors.grey.shade800,
+            ),
+            GestureDetector(
+              onTap: (){
+                if(shoe.size != '0'){
+                  Navigator.pop(context);
+                  addToCart(shoe);
+                }else{
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Please select a size'
+                      ),
+                    ),
+                  );
+                }
+              } ,
+              child: Center(
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width - 120,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Add to cart',
+                      style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ) ,
+                ),
+              ),
+            ),
+          ],
+        ),
+      )
+    );
+
+  }
 
   void addToCart(Shoe shoe){
     Provider.of<Cart>(context, listen: false).addCart(shoe);
@@ -117,12 +203,12 @@ class _ShopPageState extends State<ShopPage> {
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: value.getShoeShop().length,
             itemBuilder:(context, index) {
-              Shoe shoe = value.getShoeShop()[index]; 
+              Shoe shoe = value.getShoeShop()[index];
               return ShoeTile(
                 shoe: shoe, 
-                onTap: () => addToCart(shoe)
+                onTap: () => showSelectSheet(shoe,)
               );
             },
           ), 

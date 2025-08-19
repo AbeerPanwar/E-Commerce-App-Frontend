@@ -8,29 +8,33 @@ class Cart extends ChangeNotifier {
         description: 'The forward-thinking design of his latest signature shoe.',
         name: 'Zoom Freak',
         price: '249',
-        imagePath: 'assets/images/Zoom freak.jpg', 
+        imagePath: 'assets/images/Zoom freak.jpg',
         imageSize: 300,
+        size: '0',
       ),
       Shoe(
         description: 'You\'ve got the hops and the speed-lace up in shoes that enhance what you bring to the court',
         name: 'Air Jordan',
         price: '289',
-        imagePath: 'assets/images/Air Jordan.jpg', 
+        imagePath: 'assets/images/Air Jordan.jpg',
         imageSize: 280,
+        size: '0',
       ),
       Shoe(
         description: 'A secure midfoot strap is suited for scoring binges and defensive stands, so that you can lock in and keep winning',
         name: 'KD Treys', 
         price: '299',
-        imagePath: 'assets/images/KD Treys.jpg', 
+        imagePath: 'assets/images/KD Treys.jpg',
         imageSize: 280,
+        size: '0',
       ),
       Shoe(
         description: 'Bouncy cushioning is paired with soft yet supportive foam for responsiveness and smooth heel to toe transition',
         name: 'Kyrie 6',
         price: '329',
-        imagePath: 'assets/images/kyrie 6.jpg', 
+        imagePath: 'assets/images/kyrie 6.jpg',
         imageSize: 280,
+        size: '0',
       ),
   ];
 
@@ -42,6 +46,11 @@ class Cart extends ChangeNotifier {
 
   List<Shoe> getShoeCart(){
     return shoeCart;
+  }
+
+  void addSize(Shoe shoe, String selectedSize){
+    shoe.size = selectedSize;
+    notifyListeners();
   }
 
   void addCart(Shoe shoe){

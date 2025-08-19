@@ -43,12 +43,26 @@ class _CartTileState extends State<CartTile> {
               color: Colors.grey.shade800,
             ),
           ),
-          subtitle: Text(
-            '\$ ${widget.shoe.price}',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey.shade500,
-            ),
+          subtitle: Row(
+            children: [
+              Text(
+                '\$ ${widget.shoe.price}',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey.shade500,
+                ),
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Text(
+                'Size: ${widget.shoe.size}',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey.shade500,
+                ),
+              )
+            ],
           ),
           trailing: IconButton(
             onPressed: () {
