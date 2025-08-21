@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final List _pages = [
+  final List<Widget> _pages = [
     ShopPage(),
     CartPage(),
   ];
@@ -135,7 +135,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: _pages[_selectedIndex],
+      body: Scaffold(
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _pages,
+        ),
+      ),
       bottomNavigationBar: MyNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
